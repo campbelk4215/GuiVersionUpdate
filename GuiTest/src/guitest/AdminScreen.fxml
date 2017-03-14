@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="adminPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guitest.AdminScreenController">
+   <children>
+      <Button fx:id="inventoryButton" layoutX="255.0" layoutY="152.0" mnemonicParsing="false" onAction="#inventoryButtonListener" prefHeight="25.0" prefWidth="90.0" text="Inventory" />
+      <Button fx:id="placeOrderButton" layoutX="255.0" layoutY="186.0" mnemonicParsing="false" onAction="#placeOrderButtonListener" prefHeight="25.0" prefWidth="90.0" text="Place Order" />
+      <Button fx:id="reserveEvent" layoutX="255.0" layoutY="223.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve Event" />
+      <Label fx:id="outputLabel" layoutX="286.0" layoutY="20.0" text="Label" />
+   </children>
+</AnchorPane>
