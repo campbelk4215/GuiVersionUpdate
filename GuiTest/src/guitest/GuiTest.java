@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author happelj0841
+ * @author Joshua Happel
  */
 public class GuiTest
         extends Application
@@ -28,6 +28,7 @@ public class GuiTest
     @Override
     public void start(Stage primaryStage) throws IOException
     {
+        ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
@@ -43,16 +44,18 @@ public class GuiTest
     {
         launch(args);
     }
+    //if you are going to load an fxml the method needs to throw an IOException
+    //
     public void showCustomerScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("CustomerScreen.fxml"));
-        Scene scene = new Scene(root);
-        Stage customerStage = new Stage();
-        currentStage.close();
-        currentStage = customerStage;
-        customerStage.setTitle("Customer Screen");
-        customerStage.setScene(scene);
-        customerStage.show();
+        Scene scene = new Scene(root);//creates a scene using the fxml
+        Stage customerStage = new Stage();//creates a stage to hold the scene
+        currentStage.close();//gets rid of the old screen
+        currentStage = customerStage;//sets the current screen to the currentstage field to easily be closed
+        customerStage.setTitle("Customer Screen");//sets the screen title
+        customerStage.setScene(scene);//adds the scene to the stage
+        customerStage.show();//makes the stage visible
     }
     public void showAdminScreen() throws IOException
     {
@@ -64,6 +67,16 @@ public class GuiTest
         adminStage.setTitle("Admin Screen");
         adminStage.setScene(scene);
         adminStage.show();
-        
+    }
+    public void showEventScreen() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
+        Scene scene = new Scene(root);
+        Stage eventStage = new Stage();
+        currentStage.close();
+        currentStage = eventStage;
+        eventStage.setTitle("Admin Screen");
+        eventStage.setScene(scene);
+        eventStage.show();
     }
 }

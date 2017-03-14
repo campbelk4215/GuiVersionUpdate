@@ -34,22 +34,20 @@ public class loginController
     {
         if(userNameTextField.getText().equals("Customer"))
         {
-            GuiTest gt = new GuiTest();
             try 
             {
-                gt.showCustomerScreen();
-            } 
-            catch (IOException ex) 
+                ScreenChanger.getGuiTest().showCustomerScreen();
+            }
+            catch (IOException ex)
             {
-                Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
         if(userNameTextField.getText().equals("Admin"))
         {
-            GuiTest gt = new GuiTest();
             try 
             {
-                gt.showAdminScreen();
+                ScreenChanger.getGuiTest().showAdminScreen();
             }
             catch (IOException ex)
             {

@@ -5,6 +5,7 @@
  */
 package guitest;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -39,5 +40,13 @@ public class CustomerScreenController implements Initializable {
     public void reserveEventButton()
     {
         
+            try 
+            {
+                ScreenChanger.getGuiTest().showEventScreen();
+            }
+            catch (IOException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
     }
 }
