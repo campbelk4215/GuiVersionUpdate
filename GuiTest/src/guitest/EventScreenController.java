@@ -7,10 +7,13 @@ package guitest;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 
 /**
  * FXML Controller class
@@ -23,6 +26,8 @@ public class EventScreenController implements Initializable {
     private DatePicker eventDatePicker;
     @FXML
     private MenuButton menuButton;
+    @FXML
+    private MenuItem menuItem;
 
     /**
      * Initializes the controller class.
@@ -32,4 +37,19 @@ public class EventScreenController implements Initializable {
         // TODO
     }    
     
+    public void menuButtonListener(ActionEvent e)
+    {
+        String timeString = "";
+        for(MenuItem m : menuButton.getItems())
+        {
+            if(e.getSource().equals(m))
+            {
+                menuButton.setText(m.getText());
+                timeString = m.getText();
+            }
+        }
+        Event event = new Event();
+        event.setTime(timeString);
+        System.out.println(event.getTime());
+    }
 }

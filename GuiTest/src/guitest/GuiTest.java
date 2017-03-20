@@ -23,14 +23,16 @@ import javafx.stage.Stage;
 public class GuiTest
         extends Application
 {
+    private static GuiTest gt;
     static Stage currentStage;
     Scene currentScene;
     @Override
     public void start(Stage primaryStage) throws IOException
     {
+        gt = this;
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
@@ -68,15 +70,19 @@ public class GuiTest
         adminStage.setScene(scene);
         adminStage.show();
     }
-    public void showEventScreen() throws IOException
+    public void showCustomerEventScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
         Scene scene = new Scene(root);
         Stage eventStage = new Stage();
         currentStage.close();
         currentStage = eventStage;
-        eventStage.setTitle("Admin Screen");
+        eventStage.setTitle("Event Screen");
         eventStage.setScene(scene);
         eventStage.show();
+    }
+    public static GuiTest getGuiTest()//use this to access show screen methods
+    {
+        return gt;
     }
 }

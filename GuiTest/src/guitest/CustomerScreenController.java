@@ -42,7 +42,7 @@ public class CustomerScreenController implements Initializable {
         
             try 
             {
-                ScreenChanger.getGuiTest().showEventScreen();
+                GuiTest.getGuiTest().showCustomerEventScreen();
             }
             catch (IOException ex)
             {
