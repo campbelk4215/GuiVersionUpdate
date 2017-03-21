@@ -31,6 +31,8 @@ public class AdminScreenController
     private Button reserveEvent;
     @FXML
     private Label outputLabel;
+    @FXML
+    private Button backButton;
     
     public void inventoryButtonListener()
     {
@@ -45,5 +47,9 @@ public class AdminScreenController
     public void reserveEventListener()
     {
         outputLabel.setText("Reserve Event");
+    }
+    public void backButtonListener()
+    {
+        GuiTest.goToPreviousScene();
     }
 }

@@ -32,6 +32,8 @@ public class EventScreenController implements Initializable {
     private MenuItem menuItem;
     @FXML
     private Button reserveEventButton;
+    @FXML
+    private Button backButton;
     private LocalDate ld = java.time.LocalDate.now();
     /**
      * Initializes the controller class.
@@ -43,31 +45,49 @@ public class EventScreenController implements Initializable {
     
     public void menuButtonListener(ActionEvent e)
     {
-        String timeString = "";
-        for(MenuItem m : menuButton.getItems())
+        for(MenuItem m : menuButton.getItems())//enhanced for loop behaves a c# foreach loop
         {
-            if(e.getSource().equals(m))
+            if(e.getSource().equals(m))//compares the source of the event to the current menuitem
             {
-                menuButton.setText(m.getText());
-                timeString = m.getText();
+                menuButton.setText(m.getText());//changes the text of the menuButton
             }
         }
-        Event event = new Event();
-        event.setTime(timeString);
-        System.out.println(event.getTime());
     }
     
     public void eventDatePickerListener()
     {
-        eventDatePicker.getValue();
-        System.out.println(eventDatePicker.getValue().toString());
-        System.out.println(eventDatePicker.getChronology().toString());
+        
     }
     public void reserveEventListener()
     {
+        /**
+         * this compares the selected date to the current date
+         * the compareTo method compares two chronology objects and returns an int
+         * if the returned int is positive that means the object being sent as an
+         * arguement eventDatePicker.getValue() is earlier in time than the object
+         * calling the compareTo method
+         * This if statement makes sure the user has picked a time on the current 
+         * date or sometime in the future
+         */
         if(ld.compareTo(eventDatePicker.getValue()) > 0)
         {
-            System.out.print("Invalid Date please a time not in the past");
+            System.out.println("Invalid Date please pick a time not in the past");
         }
+        //this makes sure the user has picked a time slot
+        if(menuButton.getText().equals("Pick Time"))
+        {
+            System.out.println("Please Pick a time slot");
+        }
+        //if the user has correctly picked a time then an event object is created
+        else
+        {
+            Event e = new Event(eventDatePicker.getValue().toString(), menuButton.getText());
+            System.out.println(e.getDate());
+            System.out.println(e.getTime());
+        }
+    }
+    public void backButtonListener()
+    {
+        GuiTest.goToPreviousScene();
     }
 }

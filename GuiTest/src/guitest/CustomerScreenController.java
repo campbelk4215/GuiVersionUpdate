@@ -26,6 +26,8 @@ public class CustomerScreenController implements Initializable {
     private Button reserveEventButton;
     @FXML
     private AnchorPane customerPane;
+    @FXML
+    private Button backButton;
     /**
      * Initializes the controller class.
      */
@@ -48,5 +50,9 @@ public class CustomerScreenController implements Initializable {
             {
                 System.out.println(ex.getMessage());
             }
+    }
+    public void backButtonListener()
+    {
+        GuiTest.goToPreviousScene();
     }
 }

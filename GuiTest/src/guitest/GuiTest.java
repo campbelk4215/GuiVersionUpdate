@@ -6,6 +6,8 @@
 package guitest;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,17 +25,19 @@ import javafx.stage.Stage;
 public class GuiTest
         extends Application
 {
+    private static List<Scene> scenes = new ArrayList<Scene>();//
     private static GuiTest gt;
     static Stage currentStage;
-    Scene currentScene;
     @Override
     public void start(Stage primaryStage) throws IOException
     {
+        
         gt = this;
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
+        scenes.add(scene);
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -54,6 +58,7 @@ public class GuiTest
         Scene scene = new Scene(root);//creates a scene using the fxml
         currentStage.setTitle("Customer Screen");//sets the screen title
         currentStage.setScene(scene);//adds the scene to the stage
+        scenes.add(scene);
         
     }
     public void showAdminScreen() throws IOException
@@ -62,6 +67,7 @@ public class GuiTest
         Scene scene = new Scene(root);
         currentStage.setScene(scene);
         currentStage.setTitle("Admin Screen");
+        scenes.add(scene);
     }
     public void showCustomerEventScreen() throws IOException
     {
@@ -69,9 +75,23 @@ public class GuiTest
         Scene scene = new Scene(root);
         currentStage.setTitle("Event Screen");
         currentStage.setScene(scene);
+        scenes.add(scene);
+        
     }
     public static GuiTest getGuiTest()//use this to access show screen methods
     {
         return gt;
+    }
+    public static List<Scene> getSceneList()
+    {
+        return scenes;
+    }
+    public static void goToPreviousScene()
+    {
+        Scene s;//placeholder scene variable
+        s = scenes.get(scenes.lastIndexOf(currentStage.getScene()) - 1);//fills placeholder with previous scene
+        scenes.remove(currentStage.getScene());//removes the current scene
+        currentStage.setScene(s);// shows previous scene
+        
     }
 }

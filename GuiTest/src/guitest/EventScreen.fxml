@@ -24,5 +24,6 @@
         </columns>
       </TableView>
       <Button fx:id="reserveEventButton" layoutX="45.0" layoutY="175.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
+      <Button fx:id="backButton" layoutX="45.0" layoutY="202.0" mnemonicParsing="false" onAction="#backButtonListener" prefHeight="25.0" prefWidth="58.0" text="Back" />
    </children>
 </AnchorPane>
