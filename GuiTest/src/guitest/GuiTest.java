@@ -32,7 +32,7 @@ public class GuiTest
         gt = this;
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
@@ -52,34 +52,23 @@ public class GuiTest
     {
         Parent root = FXMLLoader.load(getClass().getResource("CustomerScreen.fxml"));
         Scene scene = new Scene(root);//creates a scene using the fxml
-        Stage customerStage = new Stage();//creates a stage to hold the scene
-        currentStage.close();//gets rid of the old screen
-        currentStage = customerStage;//sets the current screen to the currentstage field to easily be closed
-        customerStage.setTitle("Customer Screen");//sets the screen title
-        customerStage.setScene(scene);//adds the scene to the stage
-        customerStage.show();//makes the stage visible
+        currentStage.setTitle("Customer Screen");//sets the screen title
+        currentStage.setScene(scene);//adds the scene to the stage
+        
     }
     public void showAdminScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("AdminScreen.fxml"));
         Scene scene = new Scene(root);
-        Stage adminStage = new Stage();
-        currentStage.close();
-        currentStage = adminStage;
-        adminStage.setTitle("Admin Screen");
-        adminStage.setScene(scene);
-        adminStage.show();
+        currentStage.setScene(scene);
+        currentStage.setTitle("Admin Screen");
     }
     public void showCustomerEventScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
         Scene scene = new Scene(root);
-        Stage eventStage = new Stage();
-        currentStage.close();
-        currentStage = eventStage;
-        eventStage.setTitle("Event Screen");
-        eventStage.setScene(scene);
-        eventStage.show();
+        currentStage.setTitle("Event Screen");
+        currentStage.setScene(scene);
     }
     public static GuiTest getGuiTest()//use this to access show screen methods
     {

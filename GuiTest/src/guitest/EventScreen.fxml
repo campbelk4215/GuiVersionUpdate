@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guitest.EventScreenController">
    <children>
-      <DatePicker fx:id="eventDatePicker" layoutX="14.0" layoutY="14.0" />
+      <DatePicker fx:id="eventDatePicker" editable="false" layoutX="14.0" layoutY="14.0" onAction="#eventDatePickerListener" />
       <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Pick Time">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="8:00 - 10:00" />
@@ -23,5 +23,6 @@
             <TableColumn prefWidth="75.0" text="Column X" />
         </columns>
       </TableView>
+      <Button fx:id="reserveEventButton" layoutX="45.0" layoutY="175.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
    </children>
 </AnchorPane>

@@ -6,10 +6,12 @@
 package guitest;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
@@ -28,13 +30,15 @@ public class EventScreenController implements Initializable {
     private MenuButton menuButton;
     @FXML
     private MenuItem menuItem;
-
+    @FXML
+    private Button reserveEventButton;
+    private LocalDate ld = java.time.LocalDate.now();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        eventDatePicker.getChronology().dateNow();
     }    
     
     public void menuButtonListener(ActionEvent e)
@@ -51,5 +55,19 @@ public class EventScreenController implements Initializable {
         Event event = new Event();
         event.setTime(timeString);
         System.out.println(event.getTime());
+    }
+    
+    public void eventDatePickerListener()
+    {
+        eventDatePicker.getValue();
+        System.out.println(eventDatePicker.getValue().toString());
+        System.out.println(eventDatePicker.getChronology().toString());
+    }
+    public void reserveEventListener()
+    {
+        if(ld.compareTo(eventDatePicker.getValue()) > 0)
+        {
+            System.out.print("Invalid Date please a time not in the past");
+        }
     }
 }
