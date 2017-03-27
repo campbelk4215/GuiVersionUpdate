@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guitest.EventScreenController">
    <children>
-      <DatePicker fx:id="eventDatePicker" editable="false" layoutX="14.0" layoutY="14.0" onAction="#eventDatePickerListener" />
-      <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="Pick Time">
+      <DatePicker fx:id="eventDatePicker" editable="false" layoutX="16.0" layoutY="114.0" onAction="#eventDatePickerListener" />
+      <MenuButton fx:id="menuButton" layoutX="16.0" layoutY="141.0" mnemonicParsing="false" text="Pick Time">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="8:00 - 10:00" />
           <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="10:00 - 12:00" />
@@ -16,14 +16,18 @@
             <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="4:00 - 6:00" />
         </items>
       </MenuButton>
-      <TableView layoutX="241.0" layoutY="14.0" prefHeight="200.0" prefWidth="228.0">
+      <TableView fx:id="tableView" layoutX="20.0" layoutY="269.0" prefHeight="82.0" prefWidth="226.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
+          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="guestsColumn" prefWidth="75.0" text="#Guests" />
         </columns>
       </TableView>
-      <Button fx:id="reserveEventButton" layoutX="45.0" layoutY="175.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
-      <Button fx:id="backButton" layoutX="45.0" layoutY="202.0" mnemonicParsing="false" onAction="#backButtonListener" prefHeight="25.0" prefWidth="58.0" text="Back" />
+      <Button fx:id="reserveEventButton" layoutX="16.0" layoutY="166.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
+      <Button fx:id="backButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonListener" prefHeight="25.0" prefWidth="58.0" text="Back" />
+      <TextField fx:id="numberOfGuestsTextField" layoutX="16.0" layoutY="89.0" promptText="Number of Guests" />
+      <Label fx:id="dateLabel" layoutX="246.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
+      <Label fx:id="timeLabel" layoutX="356.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
+      <Label fx:id="guestsLabel" layoutX="471.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
    </children>
 </AnchorPane>

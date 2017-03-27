@@ -13,11 +13,13 @@ public class Event
 {
     private String date;
     private String time;
+    private int guests;
     
-    public Event(String date, String time)
+    public Event(String date, String time, int guests)
     {
         this.date = date;
         this.time = time;
+        this.guests = guests;
     }
     public Event()
     {
@@ -31,7 +33,10 @@ public class Event
     {
         time = t;
     }
-
+    public void setGuests(int g)
+    {
+        guests = g;
+    }
     public String getDate()
     {
         return date;
@@ -41,5 +46,8 @@ public class Event
     {
         return time;
     }
-    
+    public int getGuests()
+    {
+        return guests;
+    }
 }

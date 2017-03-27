@@ -35,7 +35,7 @@ public class GuiTest
         gt = this;
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
         Scene scene = new Scene(root);
         scenes.add(scene);
         primaryStage.setTitle("Login");
