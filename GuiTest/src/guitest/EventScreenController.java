@@ -116,7 +116,7 @@ public class EventScreenController implements Initializable {
                 System.out.println("Pick a valid number of guests.");
             }
         }
-        catch(Exception e)
+        catch(NumberFormatException e)
         {
             System.out.println("Invalid number of guests");
         }

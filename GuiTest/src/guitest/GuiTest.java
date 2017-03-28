@@ -92,6 +92,5 @@ public class GuiTest
         s = scenes.get(scenes.lastIndexOf(currentStage.getScene()) - 1);//fills placeholder with previous scene
         scenes.remove(currentStage.getScene());//removes the current scene
         currentStage.setScene(s);// shows previous scene
-        
     }
 }
