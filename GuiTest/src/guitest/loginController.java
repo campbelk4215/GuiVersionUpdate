@@ -32,28 +32,54 @@ public class loginController
     
     public void submitListener()
     {
-        if(userNameTextField.getText().equals("Customer"))
+        boolean b = true;
+        for(User u : GuiTest.getUserList())
         {
-            try 
+            if(u.getUsername().equals(userNameTextField.getText()))
             {
-                ScreenChanger.getGuiTest().showCustomerScreen();
-            }
-            catch (IOException ex)
-            {
-                System.out.println(ex.getMessage());
+                if(u.getPassword().equals(passwordTextField.getText()))
+                {
+                    if(u.getIsAdmin())
+                    {
+                        try
+                        {
+                            GuiTest.getGuiTest().showAdminScreen();
+                            b = false;
+                            GuiTest.setCurrentUser(u);
+                            break;
+                        }
+                        catch(IOException e)
+                        {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            GuiTest.getGuiTest().showCustomerScreen();
+                            b = false;
+                            GuiTest.setCurrentUser(u);
+                            break;
+                        }
+                        catch(IOException e)
+                        {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
             }
         }
-        if(userNameTextField.getText().equals("Admin"))
+        userNameTextField.setText("");
+        passwordTextField.setText("");
+        if(b)
         {
-            try 
-            {
-                ScreenChanger.getGuiTest().showAdminScreen();
-            }
-            catch (IOException ex)
-            {
-                System.out.println(ex.getMessage());
-            }
+            System.out.println("Invalid Username or password");
         }
+    }
+    public void cancelButtonListener()
+    {
+        GuiTest.getGuiTest().Close();
     }
 }
 
