@@ -11,6 +11,6 @@
       <Label layoutX="14.0" layoutY="49.0" text="Password" />
       <TextField id="passwordField" fx:id="passwordTextField" layoutX="81.0" layoutY="45.0" />
       <Button id="submitButton" fx:id="submitButton" layoutX="274.0" layoutY="10.0" mnemonicParsing="false" onAction="#submitListener" text="Submit" />
-      <Button id="cancelButton" fx:id="cancelButton" layoutX="275.0" layoutY="45.0" mnemonicParsing="false" text="Cancel" />
+      <Button id="cancelButton" fx:id="cancelButton" layoutX="275.0" layoutY="45.0" mnemonicParsing="false" onAction="#cancelButtonListener" text="Cancel" />
    </children>
 </AnchorPane>
