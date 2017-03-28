@@ -56,7 +56,10 @@ public class EventScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        eventDatePicker.getChronology().dateNow();
+        for(Event e : GuiTest.getCurrentUser().getEventList())
+        {
+            updateEventList(e);
+        }
     }    
     
     public void menuButtonListener(ActionEvent e)
@@ -97,9 +100,8 @@ public class EventScreenController implements Initializable {
                     if(!menuButton.getText().equals("Pick Time"))
                     {
                         Event e = new Event(eventDatePicker.getValue().toString(), menuButton.getText(), guests);
-                        dateLabel.setText(dateLabel.getText() + e.getDate() + "\n");
-                        timeLabel.setText(timeLabel.getText() + e.getTime() + "\n");
-                        guestsLabel.setText(guestsLabel.getText() + e.getGuests() + "\n");
+                        updateEventList(e);
+                        GuiTest.getCurrentUser().addEvent(e);
                     }
                     else
                     {
@@ -124,5 +126,11 @@ public class EventScreenController implements Initializable {
     public void backButtonListener()
     {
         GuiTest.goToPreviousScene();
+    }
+    public void updateEventList(Event e)
+    {
+        dateLabel.setText(dateLabel.getText() + e.getDate() + "\n");
+        timeLabel.setText(timeLabel.getText() + e.getTime() + "\n");
+        guestsLabel.setText(guestsLabel.getText() + e.getGuests() + "\n");
     }
 }
