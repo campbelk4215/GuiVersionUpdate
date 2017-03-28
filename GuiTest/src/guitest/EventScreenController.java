@@ -42,21 +42,13 @@ public class EventScreenController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private TableView tableView;
-    @FXML
     private TextField numberOfGuestsTextField;
     @FXML
     private Label dateLabel;
     @FXML
     private Label timeLabel;
     @FXML
-    private Label guestsLabel;    
-    @FXML
-    private TableColumn dateColumn;
-    @FXML
-    private TableColumn timeColumn;
-    @FXML
-    private TableColumn guestsColumn;
+    private Label guestsLabel;
     private LocalDate ld = java.time.LocalDate.now();
     
     /**
@@ -97,37 +89,31 @@ public class EventScreenController implements Initializable {
         {
             String str = numberOfGuestsTextField.getText();
             int guests = Integer.parseInt(str);
-            if(guests > 30)
+            
+            if(guests <= 30)
             {
-                System.out.println("Too many guests");
+                if(ld.compareTo(eventDatePicker.getValue()) <= 0)
+                {
+                    if(!menuButton.getText().equals("Pick Time"))
+                    {
+                        Event e = new Event(eventDatePicker.getValue().toString(), menuButton.getText(), guests);
+                        dateLabel.setText(dateLabel.getText() + e.getDate() + "\n");
+                        timeLabel.setText(timeLabel.getText() + e.getTime() + "\n");
+                        guestsLabel.setText(guestsLabel.getText() + e.getGuests() + "\n");
+                    }
+                    else
+                    {
+                        System.out.println("Pick a time.");
+                    }
+                }
+                else
+                {
+                    System.out.println("Pick a valid date.");
+                }
             }
-            if(ld.compareTo(eventDatePicker.getValue()) > 0)
-            {
-                System.out.println("Invalid Date please pick a time not in the past");
-            }
-            //this makes sure the user has picked a time slot
-            if(menuButton.getText().equals("Pick Time"))
-            {
-                System.out.println("Please Pick a time slot");
-            }
-            //if the user has correctly picked a time then an event object is created
             else
             {
-                
-                Event e = new Event(eventDatePicker.getValue().toString(), menuButton.getText(), guests);
-                System.out.println(e.getDate());
-                System.out.println(e.getTime());
-                System.out.println(guests);
-                dateLabel.setText(e.getDate() +"\n");
-                timeLabel.setText(e.getTime()+"\n");
-                guestsLabel.setText("" + e.getGuests()+"\n");
-                Event ee = new Event(eventDatePicker.getValue().toString(), menuButton.getText(), guests);
-                System.out.println(ee.getDate());
-                System.out.println(ee.getTime());
-                System.out.println(guests);
-                dateLabel.setText(dateLabel.getText() + ee.getDate() +"\n");
-                timeLabel.setText(timeLabel.getText() + ee.getTime()+"\n");
-                guestsLabel.setText(guestsLabel.getText() + "" + ee.getGuests()+"\n");
+                System.out.println("Pick a valid number of guests.");
             }
         }
         catch(Exception e)

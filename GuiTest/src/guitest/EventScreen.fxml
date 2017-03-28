@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guitest.EventScreenController">
    <children>
-      <DatePicker fx:id="eventDatePicker" editable="false" layoutX="16.0" layoutY="114.0" onAction="#eventDatePickerListener" />
-      <MenuButton fx:id="menuButton" layoutX="16.0" layoutY="141.0" mnemonicParsing="false" text="Pick Time">
+      <DatePicker fx:id="eventDatePicker" editable="false" layoutX="16.0" layoutY="76.0" onAction="#eventDatePickerListener" />
+      <MenuButton fx:id="menuButton" layoutX="16.0" layoutY="103.0" mnemonicParsing="false" text="Pick Time">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="8:00 - 10:00" />
           <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="10:00 - 12:00" />
@@ -16,18 +17,12 @@
             <MenuItem mnemonicParsing="false" onAction="#menuButtonListener" text="4:00 - 6:00" />
         </items>
       </MenuButton>
-      <TableView fx:id="tableView" layoutX="20.0" layoutY="269.0" prefHeight="82.0" prefWidth="226.0">
-        <columns>
-          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
-          <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
-            <TableColumn fx:id="guestsColumn" prefWidth="75.0" text="#Guests" />
-        </columns>
-      </TableView>
-      <Button fx:id="reserveEventButton" layoutX="16.0" layoutY="166.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
+      <Button fx:id="reserveEventButton" layoutX="16.0" layoutY="128.0" mnemonicParsing="false" onAction="#reserveEventListener" text="Reserve" />
       <Button fx:id="backButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonListener" prefHeight="25.0" prefWidth="58.0" text="Back" />
-      <TextField fx:id="numberOfGuestsTextField" layoutX="16.0" layoutY="89.0" promptText="Number of Guests" />
-      <Label fx:id="dateLabel" layoutX="246.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
-      <Label fx:id="timeLabel" layoutX="356.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
-      <Label fx:id="guestsLabel" layoutX="471.0" layoutY="39.0" lineSpacing="1.0" text="Label" />
+      <TextField fx:id="numberOfGuestsTextField" layoutX="16.0" layoutY="51.0" promptText="Number of Guests" />
+      <Label fx:id="dateLabel" layoutX="245.0" layoutY="72.0" lineSpacing="1.0" />
+      <Label fx:id="timeLabel" layoutX="355.0" layoutY="72.0" lineSpacing="1.0" />
+      <Label fx:id="guestsLabel" layoutX="470.0" layoutY="72.0" lineSpacing="1.0" />
+      <Label layoutX="245.0" layoutY="51.0" text="Your Scheduled Events" />
    </children>
 </AnchorPane>
