@@ -27,15 +27,27 @@ public class GuiTest
 {
     private static List<Scene> scenes = new ArrayList<Scene>();//
     private static GuiTest gt;
+    private static User currentUser;
+    private static List<User> users = new ArrayList<User>();
     static Stage currentStage;
     @Override
     public void start(Stage primaryStage) throws IOException
     {
+        User u0 = new User("Josh", "12345", 1, false);
+        User u1 = new User("IUYT", "12345", 2, false);
+        User u2 = new User("bill", "12345", 3, false);
+        User u3 = new User("qwer", "12345", 4, false);
+        User u4 = new User("JUYT", "12345", 5, true);
         
+        users.add(u0);
+        users.add(u1);
+        users.add(u2);
+        users.add(u3);
+        users.add(u4);
         gt = this;
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("EventScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
         scenes.add(scene);
         primaryStage.setTitle("Login");
@@ -92,5 +104,21 @@ public class GuiTest
         s = scenes.get(scenes.lastIndexOf(currentStage.getScene()) - 1);//fills placeholder with previous scene
         scenes.remove(currentStage.getScene());//removes the current scene
         currentStage.setScene(s);// shows previous scene
+    }
+    public static List<User> getUserList()
+    {
+        return users;
+    }
+    public static User getCurrentUser()
+    {
+        return currentUser;
+    }
+    public static void setCurrentUser(User u)
+    {
+        currentUser = u;
+    }
+    public void Close()
+    {
+        currentStage.close();
     }
 }
