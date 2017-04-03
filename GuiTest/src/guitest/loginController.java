@@ -5,16 +5,19 @@
  */
 package guitest;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 /**
  *
  * @author happelj0841
  */
-public class loginController
+public class loginController implements Initializable
 {
     
 
@@ -80,6 +83,14 @@ public class loginController
     public void cancelButtonListener()
     {
         GuiTest.getGuiTest().Close();
+    }
+
+    @Override
+    public void initialize(URL location,
+            ResourceBundle resources)
+    {
+        submitButton.setDefaultButton(true);
+        cancelButton.setCancelButton(true);
     }
 }
 

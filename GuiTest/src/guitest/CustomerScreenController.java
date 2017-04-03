@@ -37,7 +37,14 @@ public class CustomerScreenController implements Initializable {
     }    
     public void buyInventoryButton()
     {
-        
+            try 
+            {
+                GuiTest.getGuiTest().showItemListScreen();
+            }
+            catch (IOException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
     }
     public void reserveEventButton()
     {
