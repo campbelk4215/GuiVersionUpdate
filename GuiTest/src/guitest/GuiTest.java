@@ -9,13 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +25,7 @@ public class GuiTest
     private static GuiTest gt;
     private static User currentUser;
     private static List<User> users = new ArrayList<User>();
+    private static List<Item> items = new ArrayList<Item>();
     static Stage currentStage;
     @Override
     public void start(Stage primaryStage) throws IOException
@@ -38,16 +35,22 @@ public class GuiTest
         User u2 = new User("bill", "12345", 3, false);
         User u3 = new User("qwer", "12345", 4, false);
         User u4 = new User("JUYT", "12345", 5, true);
-        
+        for (int i = 0; i < 6; i++)
+        {
+            items.add(new Item());
+        }
         users.add(u0);
         users.add(u1);
         users.add(u2);
         users.add(u3);
         users.add(u4);
         gt = this;
+        System.out.println("Working Directory = " +
+              System.getProperty("user.dir"));
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ItemListScreen.fxml"));
+        
         Scene scene = new Scene(root);
         scenes.add(scene);
         primaryStage.setTitle("Login");
@@ -108,6 +111,10 @@ public class GuiTest
     public static List<User> getUserList()
     {
         return users;
+    }
+    public static List<Item> getItemList()
+    {
+        return items;
     }
     public static User getCurrentUser()
     {
