@@ -35,10 +35,14 @@ public class GuiTest
         User u2 = new User("bill", "12345", 3, false);
         User u3 = new User("qwer", "12345", 4, false);
         User u4 = new User("JUYT", "12345", 5, true);
-        for (int i = 0; i < 6; i++)
-        {
-            items.add(new Item());
-        }
+        items.add(new Item(1, "goat", 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
+        items.add(new Item(2, "other goat", 10, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
+        items.add(new Item(1, "goat", 110, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
+        items.add(new Item(2, "other goat", 150, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
+        items.add(new Item(1, "goat", 10021, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
+        items.add(new Item(2, "other goat", 1150, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
+        items.add(new Item(1, "goat", 1056840, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
+        items.add(new Item(2, "other goat", 1560, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
         users.add(u0);
         users.add(u1);
         users.add(u2);
@@ -49,7 +53,7 @@ public class GuiTest
               System.getProperty("user.dir"));
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ItemListScreen.fxml"));
         
         Scene scene = new Scene(root);
         scenes.add(scene);
@@ -135,5 +139,14 @@ public class GuiTest
     public void Close()
     {
         currentStage.close();
+    }
+    public static List<Item> sendEightItems(int startingIndex)
+    {
+        List<Item> returnList = new ArrayList<Item>();
+        for(int i = 0; i < 8; i++)
+        {
+            returnList.add(items.get(startingIndex + i));
+        }
+        return returnList;
     }
 }
