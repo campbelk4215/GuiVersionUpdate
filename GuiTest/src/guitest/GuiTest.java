@@ -53,7 +53,7 @@ public class GuiTest
               System.getProperty("user.dir"));
         ScreenChanger.setGuiTest(this);//needed to easily change screens
         currentStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("ItemListScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         
         Scene scene = new Scene(root);
         scenes.add(scene);
@@ -97,6 +97,17 @@ public class GuiTest
         scenes.add(scene);
         
     }
+    
+    //displays the userInfo Screen
+    public void showUserInfoScreen() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("user_Info_Form.fxml"));
+        Scene scene = new Scene(root);
+        currentStage.setTitle("User Information");
+        currentStage.setScene(scene);
+        scenes.add(scene);
+    }
+    
     public void showItemListScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("ItemListScreen.fxml"));
@@ -105,6 +116,7 @@ public class GuiTest
         currentStage.setScene(scene);
         scenes.add(scene);
     }
+    
     public static GuiTest getGuiTest()//use this to access show screen methods
     {
         return gt;
