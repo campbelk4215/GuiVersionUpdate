@@ -33,6 +33,8 @@ public class AdminScreenController
     private Label outputLabel;
     @FXML
     private Button backButton;
+    @FXML
+    private Button nextButton;
     
     public void inventoryButtonListener()
     {
@@ -51,5 +53,10 @@ public class AdminScreenController
     public void backButtonListener()
     {
         GuiTest.goToPreviousScene();
+    }
+    
+    public void nextButtonListener()
+    {
+        GuiTest.goToNextScene();
     }
 }

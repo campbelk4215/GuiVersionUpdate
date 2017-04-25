@@ -1,0 +1,24 @@
+
+Logging: 
+03-46-21 
+
+Insert Operation 
+User 
+NorrisA added.
+
+Logging: 
+03-46-22 
+
+Warning Error Updating, Problem occurred at excuteUpdate operation java.sql.SQLIntegrityConstraintViolationException: The statement was aborted because it would have caused a duplicate key value in a unique or primary key constraint or unique index identified by 'SQL170316214652860' defined on 'USER_INFO'.
+
+Logging: 
+03-46-24 
+
+User deleted: NorrisA
+
+Logging: 
+03-46-26 
+
+Insert Operation 
+User 
+NorrisA added.

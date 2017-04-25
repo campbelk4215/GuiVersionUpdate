@@ -24,17 +24,11 @@ public class GuiTest
     private static List<Scene> scenes = new ArrayList<Scene>();//
     private static GuiTest gt;
     private static User currentUser;
-    private static List<User> users = new ArrayList<User>();
     private static List<Item> items = new ArrayList<Item>();
     static Stage currentStage;
     @Override
     public void start(Stage primaryStage) throws IOException
     {
-        User u0 = new User("Josh", "12345", 1, false);
-        User u1 = new User("IUYT", "12345", 2, false);
-        User u2 = new User("bill", "12345", 3, false);
-        User u3 = new User("qwer", "12345", 4, false);
-        User u4 = new User("JUYT", "12345", 5, true);
         items.add(new Item(1, "goat", 100, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
         items.add(new Item(2, "other goat", 10, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
         items.add(new Item(1, "goat", 110, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
@@ -43,11 +37,6 @@ public class GuiTest
         items.add(new Item(2, "other goat", 1150, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
         items.add(new Item(1, "goat", 1056840, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg"));
         items.add(new Item(2, "other goat", 1560, "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/220px-Hausziege_04.jpg\""));
-        users.add(u0);
-        users.add(u1);
-        users.add(u2);
-        users.add(u3);
-        users.add(u4);
         gt = this;
         System.out.println("Working Directory = " +
               System.getProperty("user.dir"));
@@ -101,7 +90,7 @@ public class GuiTest
     //displays the userInfo Screen
     public void showUserInfoScreen() throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("user_Info_Form.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("User_Info_Form.fxml"));
         Scene scene = new Scene(root);
         currentStage.setTitle("User Information");
         currentStage.setScene(scene);
@@ -136,10 +125,6 @@ public class GuiTest
         Scene s;//placeholder scene variable
         s = scenes.get(scenes.lastIndexOf(currentStage.getScene()) + 1);//fills placeholder with next scene
         currentStage.setScene(s);// shows previous scene
-    }
-    public static List<User> getUserList()
-    {
-        return users;
     }
     public static List<Item> getItemList()
     {

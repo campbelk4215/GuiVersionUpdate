@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * DB Connection Class
+ * sets conn/disc to the DB
+ * Checks for user and password in DB
+ * Capstone Group 6 
  */
 package guitest;
 
@@ -12,10 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author campbelk4215
- */
+
 public class DB_Connection
 {
     /*  
@@ -38,6 +36,8 @@ public class DB_Connection
         }
         catch (SQLException er)
         {
+            //Logs to file
+            MyLogger.Instance().log("\nWarning Error: Connection Failed! \n" + er);
             System.out.println("Connection Failed! Check output console" + er);
             throw er;
         }
@@ -55,6 +55,8 @@ public class DB_Connection
         }
         catch (Exception er)
             {
+                //Logs to file
+                MyLogger.Instance().log("\nWarning Error: Disconnection Failed! \n" + er);
                 throw er;
             }
     }
@@ -121,6 +123,9 @@ public class DB_Connection
         }
         catch (SQLException er)
         {
+            //Logs to file
+            MyLogger.Instance().log("\nWarning Error Updating, Problem occurred"
+                                    + " at excuteUpdate operation " + er);
             System.out.println("Problem occurred at excuteUpdate operation " + er);
             throw er;
         }

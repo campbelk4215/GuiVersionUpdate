@@ -1,3 +1,8 @@
+/**
+ * User Info Class Controller
+ * executes User from add, delete, update 
+ * Capstone Group 6 
+ */
 package guitest;
 
 import java.net.URL;
@@ -7,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -15,11 +21,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-/**
- *
- * @author campbelk4215
- */
-public class User_InfoController
+
+public class User_InfoController implements Initializable
 {
 
     @FXML
@@ -36,6 +39,8 @@ public class User_InfoController
     private Button deleteButton;
     @FXML
     private Button newRecordButton;
+    @FXML
+    private Button searchButton;
     @FXML
     private TextField firstNameTextField;
     @FXML
@@ -65,9 +70,10 @@ public class User_InfoController
     @FXML
     private Label passwordLabel;
     
+    
     //search user
     @FXML
-    private void searchUser (ActionEvent actionEvent) throws SQLException
+    private void searchUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException
     {
         try
         {
@@ -85,7 +91,7 @@ public class User_InfoController
     
     //search all users
     @FXML
-    private void searchAllUsers (ActionEvent actionEvent) throws SQLException
+    private void searchAllUsers (ActionEvent actionEvent) throws SQLException, ClassNotFoundException
     {
         try
         {
@@ -101,15 +107,67 @@ public class User_InfoController
         }
     }
     
+    @Override
+    public void initialize(URL url, ResourceBundle rb) 
+    { 
+        userNameColumn.setCellValueFactory(cellData -> cellData.getValue().unameProperty());
+        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().fnameProperty());
+        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lnameProperty());
+        passwordColumn.setCellValueFactory(cellData -> cellData.getValue().pwordProperty());
+        
+    } 
+    
+    //populate a user
+    @FXML
+    private void populateUser (Access_User_Information access_user) throws ClassNotFoundException
+    {
+        //declares list for tableview
+        ObservableList<Access_User_Information> userData = FXCollections.observableArrayList();
+        //add tthe users to the list
+        userData.add(access_user);
+        //set items to the table
+        outputTable.setItems(userData);     
+    }
+    
+    //set employee information to text area
+    @FXML
+    private void setUserInfoToTextArea (Access_User_Information userData)
+    {
+        resultArea.setText("First Name: " + userData.getFName());
+    }
+     
+    @FXML
+    private void populateAndShowUser (Access_User_Information userData) throws ClassNotFoundException
+    {
+        if (userData != null)
+        {
+            populateUser(userData);
+            setUserInfoToTextArea(userData);
+        }
+        else
+        {
+            resultArea.setText("This eployee does Not exist!\n");
+        }
+    }
+       
+    //displays users for tableview
+    @FXML
+    private void populateUsers (ObservableList<Access_User_Information> userData) throws ClassNotFoundException
+    {
+        //set items to the table
+        outputTable.setItems(userData);
+    }
+   
     //insert a user to DB
     @FXML
-    private void insertUser (ActionEvent actionEvent) throws SQLException
+    private void insertUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException
     {
         try
         {
             SQL_DAO.insertUser(firstNameTextField.getText(), 
                                         lastNameTextField.getText(),
-                                            userNameTextField.getText());
+                                            userNameTextField.getText(),
+                                                passwordTextField.getText());
             resultArea.setText("User Added!\n");
         }
         catch (SQLException er)
@@ -121,48 +179,31 @@ public class User_InfoController
 
     //delete a user from DB
     @FXML
-    private void deleteUser (ActionEvent actionEvent) throws SQLException
+    private void deleteUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException
     {
         try
         {
+            //Logs to file
+            MyLogger.Instance().log("\nUser deleted: " + userNameTextField.getText());
             SQL_DAO.deleteUser(userNameTextField.getText());
             resultArea.setText("User deleted!\n");
         }
         catch (SQLException er)
         {
+            //Logs to file
+            MyLogger.Instance().log("\nWarning Error: Problem occured while deleting user: " 
+                                    + userNameTextField.getText() + "\nError: " + er);
             resultArea.setText("Problem occured while deleting user");
             throw er;
         }
     }
-    /**
-     * Initializes the controller class.
-     */
-    public void initialize(URL url, ResourceBundle rb) 
-    {
-        
-    } 
-
+    
     public void previousButtonListener()
     {
         GuiTest.goToPreviousScene();
     }
-        public void nextButtonListener()
-        {
-            GuiTest.goToNextScene();
-        }
-    
-    //populate users
-    @FXML
-    private void populateUser (Access_User_Information user)
+    public void nextButtonListener()
     {
-        //declares list for tableview
-        ObservableList<Access_User_Information> userData = FXCollections.observableArrayList();
-        //add tthe users to the list
-        userData.add(user);
-        //set items to the table
-        
-        
+        GuiTest.goToNextScene();
     }
-    
 }
-

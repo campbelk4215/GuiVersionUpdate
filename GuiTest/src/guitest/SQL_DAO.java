@@ -1,3 +1,8 @@
+/**
+ * SQL DOA Class
+ * All SQL queries for the DB
+ * Capstone Group 6 
+ */
 package guitest;
 
 import java.sql.ResultSet;
@@ -11,28 +16,13 @@ import javafx.collections.ObservableList;
  */
 public class SQL_DAO
 {
-    //resultset from DB
-    public static Access_User_Information getUserFromResultSet(ResultSet rs) 
-                                                            throws SQLException
-    {
-        Access_User_Information aui = null;
-        if (rs.next())
-        {
-            aui = new Access_User_Information();
-            aui.setFName(rs.getString("FIRST_NAME"));
-            aui.setLName(rs.getString("LAST_NAME"));
-            aui.setPWord(rs.getString("PASSWORD"));
-            aui.setUName(rs.getString("USER_NAME"));
-        }
-        return aui;
-    }
     
     //Select a user
     public static Access_User_Information searchUser (String uname) 
                                                             throws SQLException
     {
         //define the sql statement
-        String selectStmt = "SELECT * FROM USER_INFO WHERE USER_NAME =" + uname;
+        String selectStmt = "SELECT * FROM USER_INFO WHERE USER_NAME ='" + uname + "'\n";
         
         //executes select statmesnt
         try
@@ -52,8 +42,24 @@ public class SQL_DAO
             throw er;
         }
     }
+
+        //resultset from DB
+    public static Access_User_Information getUserFromResultSet(ResultSet rs) 
+                                                            throws SQLException
+    {
+        Access_User_Information aui = null;
+        if (rs.next())
+        {
+            aui = new Access_User_Information();
+            aui.setFName(rs.getString("FIRST_NAME"));
+            aui.setLName(rs.getString("LAST_NAME"));
+            aui.setPWord(rs.getString("PASSWORD"));
+            aui.setUName(rs.getString("USER_NAME"));
+        }
+        return aui;
+    }
     
-    //Select all employees
+    //Select all users
     public static ObservableList<Access_User_Information> searchUsers() 
                                                             throws SQLException
     {
@@ -103,11 +109,8 @@ public class SQL_DAO
     {
         //delete statement
         String updateStmt = 
-                "BEGIN\n" +
                         "   DELETE FROM USER_INFO\n" +
-                        "   WHERE USER_NAME =" + uname + ";\n" +
-    //                 "   COMMIT;\N" +
-                "END;";
+                        "   WHERE USER_NAME ='" + uname + "'\n";
         //Execute UPDATE operation
         try
         {
@@ -115,25 +118,27 @@ public class SQL_DAO
         }
         catch (SQLException er)
         {
+            //Logs to file
+            MyLogger.Instance().log("\nError occurred while DELETE Operation \n" + er);
             System.out.print("Error occurred while DELETE Operation" + er);
             throw er;
         }
     }
     
     //insert user
-    public static void insertUser (String name, String lname, String uname)
+    public static void insertUser (String name, String lname, String uname, String password)
                                                                 throws SQLException
     {
         //insert statement
         String updateStmt =
-                "BEGIN\n" +
                         "INSERT INTO USER_INFO\n" +
                         "(USER_NAME, FIRST_NAME, LAST_NAME, PASSWORD)\n" +
                         "VALUES\n" +
-                        "('"+ uname + "', '" + name + "', '" + lname + ");\n" +
-                        "END;";
+                        "('"+ uname + "', '" + name + "', '" + lname + "', '"+ password +"')\n";
         try 
         {
+            //Logs to file
+            MyLogger.Instance().log("\nInsert Operation \nUser \n" + uname + " added.");
             DB_Connection.DB_ExecuteUpdate(updateStmt);
         }
         catch (SQLException er)

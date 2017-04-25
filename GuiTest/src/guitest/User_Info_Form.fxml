@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="paintball_v1.User_Info_FormController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="guitest.User_InfoController">
   <children>
     <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="411.0" prefWidth="600.0">
       <children>
@@ -16,13 +16,13 @@
             <Font name="System Bold" size="12.0" fx:id="x1" />
           </font>
         </Label>
-        <TextField id="firstNameTextField" alignment="CENTER" layoutX="88.0" layoutY="54.0" prefWidth="85.0" />
+        <TextField fx:id="firstNameTextField" alignment="CENTER" layoutX="88.0" layoutY="54.0" prefWidth="85.0" />
         <Label font="$x1" layoutX="16.0" layoutY="84.0" text="Last Name" />
-        <TextField id="lastNameTextField" alignment="CENTER" layoutX="88.0" layoutY="81.0" prefWidth="85.0" />
+        <TextField fx:id="lastNameTextField" alignment="CENTER" layoutX="88.0" layoutY="81.0" prefWidth="85.0" />
         <Label font="$x1" layoutX="16.0" layoutY="111.0" text="User Name" />
         <Label font="$x1" layoutX="16.0" layoutY="138.0" text="Admin User" />
-        <TextField id="userNameTextField" alignment="CENTER" layoutX="88.0" layoutY="108.0" prefWidth="85.0" />
-        <TextField id="adminUserTextField" alignment="CENTER" layoutX="88.0" layoutY="135.0" prefWidth="85.0" />
+        <TextField fx:id="userNameTextField" alignment="CENTER" layoutX="88.0" layoutY="108.0" prefWidth="85.0" />
+        <TextField fx:id="adminUserTextField" alignment="CENTER" layoutX="88.0" layoutY="135.0" prefWidth="85.0" />
         <Label layoutX="200.0" layoutY="14.0" text="User Information">
           <font>
             <Font name="System Bold Italic" size="24.0" />
@@ -31,19 +31,20 @@
         <Button id="nextButton" layoutX="541.0" layoutY="14.0" mnemonicParsing="false" text="Next" />
         <Button id="previousButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Previous" />
         <Label font="$x1" layoutX="14.0" layoutY="162.0" text="Password" />
-        <TextField id="passwordTextField" layoutX="88.0" layoutY="162.0" prefWidth="85.0" />
+        <TextField fx:id="passwordTextField" layoutX="88.0" layoutY="162.0" prefWidth="85.0" />
         <Button id="updateButton" layoutX="19.0" layoutY="198.0" mnemonicParsing="false" text="Update" />
-        <Button id="deleteButton" layoutX="118.0" layoutY="198.0" mnemonicParsing="false" text="Delete" />
-        <Button id="newRecordButton" layoutX="50.0" layoutY="234.0" mnemonicParsing="false" text="New Record" />
-        <TableView id="outputArea" layoutX="211.0" layoutY="53.0" prefHeight="125.0" prefWidth="313.0">
+        <Button id="deleteButton" layoutX="118.0" layoutY="198.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete" />
+        <Button id="newRecordButton" layoutX="19.0" layoutY="234.0" mnemonicParsing="false" onAction="#insertUser" prefWidth="59.0" text="New" />
+        <TableView fx:id="outputTable" layoutX="211.0" layoutY="53.0" prefHeight="125.0" prefWidth="313.0">
           <columns>
-            <TableColumn id="userNameColumn" prefWidth="75.0" text="UserName" />
-            <TableColumn id="lastNameColumn" prefWidth="75.0" text="LastName" />
-            <TableColumn id="firstNameColumn" prefWidth="75.0" text="FirstName" />
-            <TableColumn id="passwordColumn" prefWidth="75.0" text="Password" />
+            <TableColumn id="userNameColumn" prefWidth="75.0" text="UserName" fx:id="userNameColumn" />
+            <TableColumn id="lastNameColumn" prefWidth="75.0" text="LastName" fx:id="lastNameColumn" />
+            <TableColumn id="firstNameColumn" prefWidth="75.0" text="FirstName" fx:id="firstNameColumn" />
+            <TableColumn id="passwordColumn" prefWidth="75.0" text="Password" fx:id="passwordColumn" />
           </columns>
         </TableView>
-        <TextArea id="resultArea" layoutX="211.0" layoutY="184.0" prefHeight="98.0" prefWidth="313.0" wrapText="true" />
+        <TextArea fx:id="resultArea" layoutX="211.0" layoutY="184.0" prefHeight="98.0" prefWidth="313.0" wrapText="true" />
+        <Button id="searchButton" layoutX="117.0" layoutY="235.0" mnemonicParsing="false" onAction="#searchUser" text="Search" />
       </children>
     </AnchorPane>
   </children>

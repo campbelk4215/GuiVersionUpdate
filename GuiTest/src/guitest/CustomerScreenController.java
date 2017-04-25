@@ -62,4 +62,8 @@ public class CustomerScreenController implements Initializable {
     {
         GuiTest.goToPreviousScene();
     }
+    public void nextButtonListener()
+    {
+        GuiTest.goToNextScene();
+    }
 }
